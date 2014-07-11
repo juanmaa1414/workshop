@@ -9,9 +9,10 @@ var app = {
 
     initialize: function() {
         var self = this;
+        this.homeTpl = Handlebars.compile($("#home-tpl").html());
+        this.employeeLiTpl = Handlebars.compile($("#employee-li-tpl").html());
         this.store = new LocalStorageStore(function() {
-            this.homeTpl = Handlebars.compile($("#home-tpl").html());
-            this.employeeLiTpl = Handlebars.compile($("#employee-li-tpl").html());
+            
         });
         
         $('.search-key').on('keyup', $.proxy(this.findByName, this));
@@ -26,8 +27,8 @@ var app = {
     },
     
     renderHomeView: function() {
-        $("body").html(this.homeTpl());
-        $(".search-key").on("keyup", $.proxy(this.findByName, this));
+        $('body').html(this.homeTpl());
+        $('.search-key').on('keyup', $.proxy(this.findByName, this));
     }
 
 };
